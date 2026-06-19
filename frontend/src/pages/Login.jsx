@@ -42,8 +42,8 @@ function Login() {
     event.preventDefault();
 
     if (!username.trim() || !password.trim()) {
-      setMessage("Username aur password dono required hain.");
-      return;
+setMessage("Username and password are required to log in.");
+    return;
     }
 
     setIsSubmitting(true);
@@ -60,13 +60,11 @@ function Login() {
       const nextToken = response.data.token;
 
       if (!nextToken) {
-        setMessage("Login token nahi mila. Backend JWT response check kijiye.");
-        return;
+setMessage("Login failed: No authentication token received. Please verify the backend JWT response.");        return;
       }
 
       if (nextRole !== selectedRole) {
-        setMessage(`Yeh account ${nextRole} role ka hai. Sahi tab select karke login kijiye.`);
-        return;
+setMessage(`Incorrect role selected. This account belongs to ${nextRole}. Please choose the correct tab.`);        return;
       }
 
       localStorage.setItem("username", nextUsername);

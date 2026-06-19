@@ -68,7 +68,7 @@ function Dashboard() {
         return;
       }
 
-      showToast("Products load nahi ho paaye.", "error");
+      showToast("Failed to load products.", "error");
     } finally {
       setIsLoading(false);
     }
@@ -103,7 +103,7 @@ function Dashboard() {
         }
 
         setToast({
-          text: "Products load nahi ho paaye.",
+          text: "Failed to load products.",
           type: "error",
         });
       } finally {
@@ -179,7 +179,7 @@ function Dashboard() {
       Number.isNaN(payload.price) ||
       payload.price < 0
     ) {
-      setFormMessage("Please valid product details fill kijiye.");
+      setFormMessage("Please enter valid product details.");
       return;
     }
 
@@ -205,9 +205,9 @@ function Dashboard() {
       }
 
       if (error.response?.status === 403) {
-        setFormMessage("Sirf admin product save kar sakta hai.");
+        setFormMessage("Access denied. Only admins can save products.");
       } else {
-        setFormMessage("Product save nahi ho paaya.");
+        setFormMessage("Failed to save the product.");
       }
     } finally {
       setIsSaving(false);
@@ -241,9 +241,9 @@ function Dashboard() {
     } catch (error) {
       closeDeleteConfirm();
       if (error.response?.status === 403) {
-        showToast("Sirf admin product delete kar sakta hai.", "error");
+        showToast("Access denied. Only admins can delete products.", "error");
       } else {
-        showToast("Product delete nahi ho paaya.", "error");
+        showToast("Failed to delete the product.", "error");
       }
     }
   };
@@ -376,6 +376,20 @@ function Dashboard() {
             <span className="dashboard-nav-text">Products</span>
           </button>
 
+          {isAdmin ? (
+            <>
+              <div className="dashboard-nav-section">Admin</div>
+              <button
+                type="button"
+                className="dashboard-nav-link"
+                onClick={openAddModal}
+              >
+                <span className="dashboard-nav-icon">+</span>
+                <span className="dashboard-nav-text">Add product</span>
+              </button>
+            </>
+          ) : null}
+
           <div className="dashboard-nav-section">Categories</div>
           <div className="dashboard-category-list">
             <button
@@ -394,7 +408,6 @@ function Dashboard() {
 
             {categories.map((item) => {
               const count = products.filter((product) => product.category === item).length;
-              const categoryKey = item.toLowerCase().replace(/\s+/g, "-");
 
               return (
                 <button
@@ -407,7 +420,7 @@ function Dashboard() {
                   }
                   onClick={() => handleCategoryFilter(item)}
                 >
-                  <span className={`dashboard-category-dot ${categoryKey}`} />
+                  <span className={`dashboard-category-dot ${item.toLowerCase()}`} />
                   <span className="dashboard-category-name">{item}</span>
                   <span className="dashboard-category-count">{count}</span>
                 </button>
@@ -529,7 +542,7 @@ function Dashboard() {
             <div className="dashboard-head-actions">
               {isAdmin ? (
                 <button className="dashboard-btn dashboard-btn-primary" onClick={openAddModal}>
-                  Add product
+                  Add Product
                 </button>
               ) : null}
             </div>
@@ -769,20 +782,8 @@ function Dashboard() {
                 type="button"
                 className="dashboard-modal-close"
                 onClick={closeProductModal}
-                aria-label="Close"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
+                Close
               </button>
             </div>
 
