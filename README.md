@@ -1,4 +1,4 @@
-<img width="1912" height="917" alt="image" src="https://github.com/user-attachments/assets/7cd361b4-0145-44de-910f-62508182d97f" /># Product Management Dashboard
+# Product Management Dashboard
 
 A Full Stack Product Management Dashboard built using React and Spring Boot with JWT Authentication and Role-Based Access Control (RBAC).
 
@@ -75,16 +75,19 @@ A Full Stack Product Management Dashboard built using React and Spring Boot with
 
 <img width="1912" height="917" alt="image" src="https://github.com/user-attachments/assets/c83e424b-9ea3-40db-a281-f1c04a439712" />
 
+---
 
 ## Add Product
 
 <img width="1860" height="876" alt="image" src="https://github.com/user-attachments/assets/82139c2f-1b0e-4e77-b6c0-35479d0aabec" />
+
 
 ---
 
 ## Edit Product
 
 <img width="1877" height="877" alt="image" src="https://github.com/user-attachments/assets/fe3fc4b2-216f-402d-8e7f-34b42061fda3" />
+
 
 
 ---
